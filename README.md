@@ -1,0 +1,2 @@
+# hamal
+pokemon damage calculator
