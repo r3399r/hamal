@@ -1,0 +1,13 @@
+{
+  "name": "hamal-script",
+  "version": "1.0.0",
+  "description": "json file generator",
+  "author": "Yue Chang",
+  "license": "ISC",
+  "scripts": {
+    "generate": "node pokemon.js"
+  },
+  "dependencies": {
+    "axios": "^0.25.0"
+  }
+}
