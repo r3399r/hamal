@@ -53,6 +53,17 @@ const customI18n = {
         "meloetta-aria": "ボイス",
         "meloetta-pirouette": "ステップ",
         "greninja-ash": "サトシ",
+        "oricorio-baile": "めらめら",
+        "oricorio-pom-pom": "ぱちぱち",
+        "oricorio-pau": "ふらふら",
+        "oricorio-sensu": "まいまい",
+        "lycanroc-midday": "まひる",
+        "lycanroc-midnight": "まよなか",
+        "lycanroc-dusk": "たそがれ",
+        "wishiwashi-solo": "たんどく",
+        "wishiwashi-school": "むれ",
+        "minior-red-meteor": "りゅうせい",
+        "minior-red": "コア",
     },
     ko: {
         alola: '알로라',
@@ -105,6 +116,17 @@ const customI18n = {
         "meloetta-aria": "보이스",
         "meloetta-pirouette": "스텝",
         "greninja-ash": "지우",
+        "oricorio-baile": "이글이글",
+        "oricorio-pom-pom": "파칙파칙",
+        "oricorio-pau": "훌라훌라",
+        "oricorio-sensu": "하늘하늘",
+        "lycanroc-midday": "한낮",
+        "lycanroc-midnight": "한밤중",
+        "lycanroc-dusk": "황혼",
+        "wishiwashi-solo": "단독",
+        "wishiwashi-school": "군집",
+        "minior-red-meteor": "유성",
+        "minior-red": "코어",
     },
     en: {
         alola: 'Alola',
@@ -157,6 +179,17 @@ const customI18n = {
         "meloetta-aria": "Aria",
         "meloetta-pirouette": "Pirouette",
         "greninja-ash": "Ash",
+        "oricorio-baile": "Baile",
+        "oricorio-pom-pom": "Pom-Pom",
+        "oricorio-pau": "Pau",
+        "oricorio-sensu": "Sensu",
+        "lycanroc-midday": "Midday",
+        "lycanroc-midnight": "Midnight",
+        "lycanroc-dusk": "Dusk",
+        "wishiwashi-solo": "Solo",
+        "wishiwashi-school": "School",
+        "minior-red-meteor": "Meteor",
+        "minior-red": "Core",
     },
     fr: {
         alola: 'Alola',
@@ -209,6 +242,17 @@ const customI18n = {
         "meloetta-aria": "Chant",
         "meloetta-pirouette": "Danse",
         "greninja-ash": "Sachanobi",
+        "oricorio-baile": "Flamenco",
+        "oricorio-pom-pom": "Pom-Pom",
+        "oricorio-pau": "Hula",
+        "oricorio-sensu": "Buyō",
+        "lycanroc-midday": "Diurne",
+        "lycanroc-midnight": "Nocturne",
+        "lycanroc-dusk": "Crépusculaire",
+        "wishiwashi-solo": "Solitaire",
+        "wishiwashi-school": "Banc",
+        "minior-red-meteor": "Météore",
+        "minior-red": "Noyau",
     },
     de: {
         alola: 'Alola',
@@ -261,6 +305,17 @@ const customI18n = {
         "meloetta-aria": "Gesangs",
         "meloetta-pirouette": "Tanz",
         "greninja-ash": "Ash",
+        "oricorio-baile": "Flamenco",
+        "oricorio-pom-pom": "Cheerleading",
+        "oricorio-pau": "Hula",
+        "oricorio-sensu": "Buyo",
+        "lycanroc-midday": "Tag",
+        "lycanroc-midnight": "Nacht",
+        "lycanroc-dusk": "Zwielicht",
+        "wishiwashi-solo": "Einzel",
+        "wishiwashi-school": "Schwarm",
+        "minior-red-meteor": "Meteor",
+        "minior-red": "Kern",
     },
     'zh-Hant': {
         alola: '阿羅拉',
@@ -313,6 +368,17 @@ const customI18n = {
         "meloetta-aria": "歌聲",
         "meloetta-pirouette": "舞步",
         "greninja-ash": "小智",
+        "oricorio-baile": "熱辣熱辣",
+        "oricorio-pom-pom": "啪滋啪滋",
+        "oricorio-pau": "呼拉呼拉",
+        "oricorio-sensu": "輕盈輕盈",
+        "lycanroc-midday": "白晝",
+        "lycanroc-midnight": "黑夜",
+        "lycanroc-dusk": "黃昏",
+        "wishiwashi-solo": "單獨",
+        "wishiwashi-school": "魚群",
+        "minior-red-meteor": "流星",
+        "minior-red": "核心",
     },
     'zh-Hans': {
         alola: '阿罗拉',
@@ -365,6 +431,17 @@ const customI18n = {
         "meloetta-aria": "歌声",
         "meloetta-pirouette": "舞步",
         "greninja-ash": "小智",
+        "oricorio-baile": "热辣热辣",
+        "oricorio-pom-pom": "啪滋啪滋",
+        "oricorio-pau": "呼拉呼拉",
+        "oricorio-sensu": "轻盈轻盈",
+        "lycanroc-midday": "白昼",
+        "lycanroc-midnight": "黑夜",
+        "lycanroc-dusk": "黄昏",
+        "wishiwashi-solo": "单独",
+        "wishiwashi-school": "鱼群",
+        "minior-red-meteor": "流星",
+        "minior-red": "核心",
     }
 }
 
@@ -383,33 +460,50 @@ const isExluded = (name) => {
         || name.includes('-gmax')
         || name.includes('-totem')
         || name.includes('pikachu-')) return true
-    if (['dudunsparce-three-segment', 'eternatus-eternamax', 'maushold-family-of-three', 'zygarde-10-power-construct', 'zygarde-50-power-construct','keldeo-resolute','greninja-battle-bond'].includes(name)) return true
+    if (['dudunsparce-three-segment', 'eternatus-eternamax', 'maushold-family-of-three',
+        'zygarde-10-power-construct', 'zygarde-50-power-construct', 'keldeo-resolute',
+        'greninja-battle-bond', 'rockruff-own-tempo',
+        'minior-orange-meteor',
+        'minior-yellow-meteor',
+        'minior-green-meteor',
+        'minior-blue-meteor',
+        'minior-indigo-meteor',
+        'minior-violet-meteor',
+        'minior-orange',
+        'minior-yellow',
+        'minior-green',
+        'minior-blue',
+        'minior-indigo',
+        'minior-violet', 'mimikyu-busted'].includes(name)) return true
     return false
 }
 
-
 const main = async () => {
     const { data: { count: speicesCount } } = await axios.get('https://pokeapi.co/api/v2/pokemon-species')
-    const { data: { results: species } } = await axios.get(`https://pokeapi.co/api/v2/pokemon-species?&limit=${speicesCount}`)
-    // const { data: { results: species } } = await axios.get(`https://pokeapi.co/api/v2/pokemon-species?&limit=10&offset=550`)
+    const { data: { results } } = await axios.get(`https://pokeapi.co/api/v2/pokemon-species?&limit=${speicesCount}`)
 
     const i18n = {}
-    for (l of supportedLang) {
+    for (const l of supportedLang) {
         i18n[l] = { pokemon: {} }
     }
 
-    // await Promise.all(species.map(async s => {
-    for (const s of species) {
-        const { data: { name, names, varieties } } = await axios.get(s.url)
+    console.log('api request...')
+    const species = await Promise.all(results.map(async r => {
+        const res = await axios.get(r.url)
+        return res.data
+    }))
 
-        console.log(`${name} ${s.url}...`)
+    console.log('aggregate...')
+    for (const s of species) {
+        const { names, varieties } = s
+
         const lang = new Set(names.map(v => v.language.name))
 
         varieties.forEach(v => {
             if (isExluded(v.pokemon.name)) return
 
             const region = getRegion(v.pokemon.name)
-            for (l of supportedLang) {
+            for (const l of supportedLang) {
                 if (lang.has(l)) {
                     let pokemonI18nName = names.find(o => o.language.name === l).name
                     if (customI18n[l][v.pokemon.name]) pokemonI18nName = pokemonI18nName + `-${customI18n[l][v.pokemon.name]}`
@@ -425,7 +519,7 @@ const main = async () => {
                     if (v.pokemon.name.includes('-super')) pokemonI18nName = pokemonI18nName + `-${customI18n[l].super}`
 
                     // 騎拉帝納們
-                    if (!v.pokemon.name.includes('-original')&&v.pokemon.name.includes('-origin')) pokemonI18nName = pokemonI18nName + `-${customI18n[l].origin}`
+                    if (!v.pokemon.name.includes('-original') && v.pokemon.name.includes('-origin')) pokemonI18nName = pokemonI18nName + `-${customI18n[l].origin}`
 
                     // 達摩狒狒
                     if (v.pokemon.name.includes('-standard')) pokemonI18nName = pokemonI18nName + `-${customI18n[l].standard}`
@@ -438,8 +532,8 @@ const main = async () => {
             }
         })
     }
-    // }))
 
+    console.log('generate...')
     fs.writeFileSync('i18n/ja.json', JSON.stringify(i18n.ja), { encoding: 'utf8', flag: 'w' })
     fs.writeFileSync('i18n/ko.json', JSON.stringify(i18n.ko), { encoding: 'utf8', flag: 'w' })
     fs.writeFileSync('i18n/en.json', JSON.stringify(i18n.en), { encoding: 'utf8', flag: 'w' })
