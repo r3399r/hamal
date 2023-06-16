@@ -5,7 +5,7 @@
   "author": "Yue Chang",
   "license": "ISC",
   "scripts": {
-    "generate": "node pokemon.js"
+    "generate": "node generator.js"
   },
   "dependencies": {
     "axios": "^0.25.0"
