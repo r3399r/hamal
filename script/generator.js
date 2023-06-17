@@ -64,6 +64,13 @@ const customI18n = {
         "wishiwashi-school": "むれ",
         "minior-red-meteor": "りゅうせい",
         "minior-red": "コア",
+        "necrozma-dusk": "たそがれのたてがみ",
+        "necrozma-dawn": "あかつきのつばさ",
+        "necrozma-ultra": "ウルトラ",
+        "urshifu-single-strike": "いちげき",
+        "urshifu-rapid-strike": "れんげき",
+        "calyrex-ice": "はくばじょう",
+        "calyrex-shadow": "こくばじょう",
     },
     ko: {
         alola: '알로라',
@@ -127,6 +134,13 @@ const customI18n = {
         "wishiwashi-school": "군집",
         "minior-red-meteor": "유성",
         "minior-red": "코어",
+        "necrozma-dusk": "황혼의 갈기",
+        "necrozma-dawn": "새벽의 날개",
+        "necrozma-ultra": "월식",
+        "urshifu-single-strike": "일격",
+        "urshifu-rapid-strike": "연격",
+        "calyrex-ice": "백마",
+        "calyrex-shadow": "흑마",
     },
     en: {
         alola: 'Alola',
@@ -190,6 +204,13 @@ const customI18n = {
         "wishiwashi-school": "School",
         "minior-red-meteor": "Meteor",
         "minior-red": "Core",
+        "necrozma-dusk": "Dusk Mane",
+        "necrozma-dawn": "Dawn Wings",
+        "necrozma-ultra": "Ultra",
+        "urshifu-single-strike": "Single Strike",
+        "urshifu-rapid-strike": "Rapid Strike",
+        "calyrex-ice": "Ice Rider",
+        "calyrex-shadow": "Shadow Rider",
     },
     fr: {
         alola: 'Alola',
@@ -253,6 +274,13 @@ const customI18n = {
         "wishiwashi-school": "Banc",
         "minior-red-meteor": "Météore",
         "minior-red": "Noyau",
+        "necrozma-dusk": "Crinière du Couchant",
+        "necrozma-dawn": "Ailes de l'Aurore",
+        "necrozma-ultra": "Ultra",
+        "urshifu-single-strike": "Poing Final",
+        "urshifu-rapid-strike": "Mille Poings",
+        "calyrex-ice": "Cavalier du Froid",
+        "calyrex-shadow": "Cavalier d’Effroi",
     },
     de: {
         alola: 'Alola',
@@ -316,6 +344,13 @@ const customI18n = {
         "wishiwashi-school": "Schwarm",
         "minior-red-meteor": "Meteor",
         "minior-red": "Kern",
+        "necrozma-dusk": "Abendmähne",
+        "necrozma-dawn": "Morgenschwingen",
+        "necrozma-ultra": "Ultra",
+        "urshifu-single-strike": "Fokussierten",
+        "urshifu-rapid-strike": "Fließenden",
+        "calyrex-ice": "Schimmelreiter",
+        "calyrex-shadow": "Rappenreiter",
     },
     'zh-Hant': {
         alola: '阿羅拉',
@@ -379,6 +414,13 @@ const customI18n = {
         "wishiwashi-school": "魚群",
         "minior-red-meteor": "流星",
         "minior-red": "核心",
+        "necrozma-dusk": "黃昏之鬃",
+        "necrozma-dawn": "拂曉之翼",
+        "necrozma-ultra": "究極",
+        "urshifu-single-strike": "一擊流",
+        "urshifu-rapid-strike": "連擊流",
+        "calyrex-ice": "騎白馬",
+        "calyrex-shadow": "騎黑馬",
     },
     'zh-Hans': {
         alola: '阿罗拉',
@@ -442,6 +484,13 @@ const customI18n = {
         "wishiwashi-school": "鱼群",
         "minior-red-meteor": "流星",
         "minior-red": "核心",
+        "necrozma-dusk": "黄昏之鬃",
+        "necrozma-dawn": "拂晓之翼",
+        "necrozma-ultra": "究极",
+        "urshifu-single-strike": "一击流",
+        "urshifu-rapid-strike": "连击流",
+        "calyrex-ice": "骑白马",
+        "calyrex-shadow": "骑黑马",
     }
 }
 
@@ -459,7 +508,11 @@ const isExluded = (name) => {
     if (name.includes('-mega')
         || name.includes('-gmax')
         || name.includes('-totem')
-        || name.includes('pikachu-')) return true
+        || name.includes('pikachu-')
+        || name.includes('squawkabilly-')
+        || name.includes('tatsugiri-')
+        || name.includes('koraidon-')
+        || name.includes('miraidon-')) return true
     if (['dudunsparce-three-segment', 'eternatus-eternamax', 'maushold-family-of-three',
         'zygarde-10-power-construct', 'zygarde-50-power-construct', 'keldeo-resolute',
         'greninja-battle-bond', 'rockruff-own-tempo',
@@ -474,24 +527,29 @@ const isExluded = (name) => {
         'minior-green',
         'minior-blue',
         'minior-indigo',
-        'minior-violet', 'mimikyu-busted'].includes(name)) return true
+        'minior-violet', 'mimikyu-busted', 'magearna-original', 'cramorant-gorging',
+        'morpeko-hangry', 'zarude-dada'].includes(name)) return true
     return false
 }
 
 const main = async () => {
-    const { data: { count: speicesCount } } = await axios.get('https://pokeapi.co/api/v2/pokemon-species')
-    const { data: { results } } = await axios.get(`https://pokeapi.co/api/v2/pokemon-species?&limit=${speicesCount}`)
-
     const i18n = {}
     for (const l of supportedLang) {
         i18n[l] = { pokemon: {} }
     }
 
     console.log('api request...')
-    const species = await Promise.all(results.map(async r => {
-        const res = await axios.get(r.url)
-        return res.data
-    }))
+    let next = 'https://pokeapi.co/api/v2/pokemon-species?limit=20'
+    let species = []
+    while (next !== null) {
+        console.log(next)
+        const { data } = await axios.get(next)
+        next = data.next
+        species = [...species, ...await Promise.all(data.results.map(async r => {
+            const res = await axios.get(r.url)
+            return res.data
+        }))]
+    }
 
     console.log('aggregate...')
     for (const s of species) {
@@ -525,6 +583,10 @@ const main = async () => {
                     if (v.pokemon.name.includes('-standard')) pokemonI18nName = pokemonI18nName + `-${customI18n[l].standard}`
                     if (v.pokemon.name.includes('-zen')) pokemonI18nName = pokemonI18nName + `-${customI18n[l].zen}`
 
+                    // 公母差異的寶
+                    if (v.pokemon.name.includes('-male') || v.pokemon.name === 'oinkologne') pokemonI18nName = pokemonI18nName + '♂'
+                    if (v.pokemon.name.includes('-female')) pokemonI18nName = pokemonI18nName + '♀'
+
                     if (region) pokemonI18nName = pokemonI18nName + `(${customI18n[l][region]})`
 
                     i18n[l].pokemon[v.pokemon.name] = pokemonI18nName
@@ -543,4 +605,4 @@ const main = async () => {
     fs.writeFileSync('i18n/zh-CN.json', JSON.stringify(i18n['zh-Hans']), { encoding: 'utf8', flag: 'w' })
 }
 
-main()
+main().catch(e => console.log(e.message))
